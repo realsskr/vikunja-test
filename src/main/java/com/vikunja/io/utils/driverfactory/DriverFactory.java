@@ -1,7 +1,5 @@
 package com.vikunja.io.utils.driverfactory;
 
-import com.vikunja.io.utils.SystemPropertiesHandler;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -15,33 +13,31 @@ import lombok.extern.slf4j.Slf4j;
 public class DriverFactory
 {
 
-    private static final String BROWSER_NAME = SystemPropertiesHandler.getBrowser();
-
     @Getter
     public static WebDriver driver;
 
-    public WebDriver initializeDriver()
+    public WebDriver initializeDriver(String browserName)
     {
-        log.info("Starting execution using " + BROWSER_NAME);
+        log.info("Starting execution using " + browserName);
 
-        if (BROWSER_NAME.equalsIgnoreCase("chrome"))
+        if (browserName.equalsIgnoreCase("chrome"))
         {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         }
-        else if (BROWSER_NAME.equalsIgnoreCase("firefox"))
+        else if (browserName.equalsIgnoreCase("firefox"))
         {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         }
-        else if (BROWSER_NAME.equalsIgnoreCase("edge"))
+        else if (browserName.equalsIgnoreCase("edge"))
         {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         }
         else
         {
-            log.error("Please pass correct browser value: " + BROWSER_NAME);
+            log.error("Please pass correct browser value: " + browserName);
         }
 
         getDriver().manage().deleteAllCookies();

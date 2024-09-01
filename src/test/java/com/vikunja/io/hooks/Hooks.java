@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import com.vikunja.io.utils.DriverUtilities;
+import com.vikunja.io.utils.SystemPropertiesHandler;
 import com.vikunja.io.utils.driverfactory.DriverFactory;
 
 import org.apache.commons.io.FileUtils;
@@ -28,7 +30,9 @@ public class Hooks
     private final DriverUtilities driverUtilities = new DriverUtilities();
     private WebDriver driver;
 
-    Logger logger = LogManager.getLogger();
+    private final Logger logger = LogManager.getLogger();
+
+    public Properties properties;
 
     @Before(order = 0)
     public void setLogger(Scenario scenario)
@@ -45,13 +49,21 @@ public class Hooks
     }
 
     @Before(order = 1)
-    public void openBrowser()
+    public void readProperties()
     {
-        driverFactory = new DriverFactory();
-        driver = driverFactory.initializeDriver();
+        SystemPropertiesHandler systemPropertiesHandler = new SystemPropertiesHandler();
+        properties = systemPropertiesHandler.initializeproperties();
     }
 
-    @After(order = 2)
+    @Before(order = 2)
+    public void openBrowser()
+    {
+        String BrowserName = properties.getProperty("browser");
+        driverFactory = new DriverFactory();
+        driver = driverFactory.initializeDriver(BrowserName);
+    }
+
+    @After(order = 3)
     public void screenshot(Scenario scenario)
     {
         if (scenario.isFailed())

@@ -1,6 +1,5 @@
 package com.vikunja.io.stepdefinitions;
 
-import com.vikunja.io.utils.SystemPropertiesHandler;
 import com.vikunja.io.utils.driverfactory.DriverFactory;
 import com.vikunja.io.utils.pageobjects.RegistrationPage;
 import com.vikunja.io.utils.pageobjects.VikunjaLoginPage;
@@ -19,7 +18,6 @@ public class RegistrationSteps
 {
 
     private final WebDriver driver = DriverFactory.getDriver();
-
     private final Logger logger = LogManager.getLogger();
     private final VikunjaLoginPage vikunjaLoginPage = new VikunjaLoginPage(driver);
     private RegistrationPage registrationPage;
@@ -27,7 +25,7 @@ public class RegistrationSteps
     @Given("user is on vikunja page")
     public void userIsOnVikunjaPage()
     {
-        DriverFactory.getDriver().get(SystemPropertiesHandler.getUrl());
+        DriverFactory.getDriver().get("https://try.vikunja.io");
         logger.info("User is on vikunja page");
     }
 

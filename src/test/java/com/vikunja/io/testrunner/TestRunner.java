@@ -13,7 +13,7 @@ import io.cucumber.junit.CucumberOptions;
                 "html:target/testReport.html",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         },
-        tags = "@test"
+        tags = "@all"
 )
 public class TestRunner
 {

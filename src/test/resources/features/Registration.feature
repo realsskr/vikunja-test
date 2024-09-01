@@ -1,4 +1,4 @@
-@test
+@all
 Feature: New user registration
 
   Scenario: Register new user with invalid test data
