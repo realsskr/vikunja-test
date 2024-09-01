@@ -1,6 +1,6 @@
 package com.vikunja.io.utils.driverfactory;
 
-import com.vikunja.io.utils.PropertiesHandler;
+import com.vikunja.io.utils.SystemPropertiesHandler;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DriverFactory
 {
 
-    private static final String BROWSER_NAME = PropertiesHandler.getBrowser();
+    private static final String BROWSER_NAME = SystemPropertiesHandler.getBrowser();
 
     @Getter
     public static WebDriver driver;

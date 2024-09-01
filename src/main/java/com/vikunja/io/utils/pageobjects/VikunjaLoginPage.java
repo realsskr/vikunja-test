@@ -8,13 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 public class VikunjaLoginPage
 {
 
-    @FindBy(xpath = "//button[normalize-space()='Login']")
-    private WebElement loginButton;
-
-    @FindBy(xpath = "//a[@type='secondary']")
+    @FindBy(xpath = "//a[contains(text(),'Create account')]")
     private WebElement createAccountLink;
 
-    public final WebDriver driver;
+    private final WebDriver driver;
 
     public VikunjaLoginPage(WebDriver driver)
     {
@@ -22,12 +19,10 @@ public class VikunjaLoginPage
         PageFactory.initElements(driver, this);
     }
 
-    public void clickCreateAccount()
+    public RegistrationPage clickCreateAccountLink()
     {
-        if (createAccountLink.isDisplayed() && createAccountLink.isEnabled())
-        {
-            createAccountLink.click();
-        }
+        createAccountLink.click();
+        return new RegistrationPage(driver);
     }
 
 }

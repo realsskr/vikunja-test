@@ -1,13 +1,12 @@
 package com.vikunja.io.utils.pageobjects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class RegistrationPage
 {
 
@@ -23,7 +22,12 @@ public class RegistrationPage
     @FindBy(id = "register-submit")
     private WebElement createAccountButton;
 
+    @FindBy(xpath = "//div[@class='message danger']")
+    private WebElement errorMessage;
+
     public final WebDriver driver;
+
+    private final Logger logger = LogManager.getLogger();
 
     public RegistrationPage(WebDriver driver)
     {
@@ -31,30 +35,34 @@ public class RegistrationPage
         PageFactory.initElements(driver, this);
     }
 
-    public void enterUsername(String username)
+    public RegistrationPage enterUsername(String username)
     {
         if (userName.isDisplayed() && userName.isEnabled())
         {
             userName.clear();
             userName.sendKeys(username);
+            logger.info("Username entered: {}", username);
         }
         else
         {
-            log.error("Username text box is not displayed");
+            logger.error("Username text box is not displayed");
         }
+        return this;
     }
 
-    public void enterEmailAddress(String email)
+    public RegistrationPage enterEmailAddress(String email)
     {
         if (emailAddress.isDisplayed() && emailAddress.isEnabled())
         {
             emailAddress.clear();
             emailAddress.sendKeys(email);
+            logger.info("Email entered: {}", email);
         }
         else
         {
-            log.error("Email address text box is not displayed");
+            logger.error("Email address text box is not displayed");
         }
+        return this;
     }
 
     public void enterPassword(String pwd)
@@ -63,10 +71,11 @@ public class RegistrationPage
         {
             password.clear();
             password.sendKeys(pwd);
+            logger.info("Password entered: {}", pwd);
         }
         else
         {
-            log.error("Password text box is not displayed");
+            logger.error("Password text box is not displayed");
         }
     }
 
@@ -78,8 +87,13 @@ public class RegistrationPage
         }
         else
         {
-            log.error("Create account button is not displayed");
+            logger.error("Create account button is not displayed");
         }
+    }
+
+    public String verifyErrorMessage()
+    {
+        return errorMessage.getText();
     }
 
 }

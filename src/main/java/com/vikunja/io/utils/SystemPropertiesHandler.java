@@ -1,9 +1,9 @@
 package com.vikunja.io.utils;
 
-public class PropertiesHandler
+public class SystemPropertiesHandler
 {
 
-    private PropertiesHandler() {}
+    private SystemPropertiesHandler() {}
 
     public static String getBrowser()
     {

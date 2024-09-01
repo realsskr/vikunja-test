@@ -24,16 +24,11 @@ import io.cucumber.java.Scenario;
 public class Hooks
 {
 
-    //    public static Logger log = LogManager.getLogger();
-
-    private String loggerFileName;
-
     DriverFactory driverFactory;
-
     private final DriverUtilities driverUtilities = new DriverUtilities();
     private WebDriver driver;
 
-    //    public static final Logger logger = LogManager.getLogger();
+    Logger logger = LogManager.getLogger();
 
     @Before(order = 0)
     public void setLogger(Scenario scenario)
@@ -48,7 +43,7 @@ public class Hooks
 
         // Update Log4j2 configuration
         ThreadContext.put("logFileName", logFileName);
-        final Logger logger = LogManager.getLogger();
+        //        final Logger logger = LogManager.getLogger();
         logger.info("Starting scenario: {}", scenarioName);
 
     }
@@ -84,7 +79,7 @@ public class Hooks
     @After(order = 1)
     public void tearDownLogging(Scenario scenario)
     {
-        Logger logger = LogManager.getLogger();
+        //        Logger logger = LogManager.getLogger();
         if (scenario.isFailed())
         {
             logger.error("Scenario failed: {}", scenario.getName());
@@ -100,7 +95,7 @@ public class Hooks
     @After(order = 0)
     public void closeBrowser()
     {
-        Logger logger = LogManager.getLogger();
+        //        Logger logger = LogManager.getLogger();
         driver.quit();
         logger.info("Quit the browser");
     }
