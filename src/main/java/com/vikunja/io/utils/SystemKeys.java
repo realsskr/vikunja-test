@@ -5,6 +5,6 @@ public class SystemKeys
 
     public static final String BROWSER = "browser";
 
-    public static final String TESTING_URL = "vikunja.page";
+    public static final String TESTING_URL = "url";
 
 }

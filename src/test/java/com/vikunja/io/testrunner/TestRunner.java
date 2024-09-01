@@ -9,7 +9,11 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = { "com.vikunja.io.stepdefinitions", "com.vikunja.io.hooks" },
-        plugin = { "pretty", "html:target/testReport.html" }
+        plugin = { "pretty",
+                "html:target/testReport.html",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+        },
+        tags = "@test"
 )
 public class TestRunner
 {

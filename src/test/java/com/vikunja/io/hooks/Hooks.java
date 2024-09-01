@@ -33,19 +33,15 @@ public class Hooks
     @Before(order = 0)
     public void setLogger(Scenario scenario)
     {
-        // Generate a unique log file name based on the scenario name and timestamp
+
         String timestamp = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date());
         String scenarioName = scenario.getName().replaceAll("[^a-zA-Z0-9]", "_");
         String logFileName = String.format("logfile-%s_%s", scenarioName, timestamp);
 
-        // Set the log file name in the system property
         System.setProperty("logFileName", logFileName);
 
-        // Update Log4j2 configuration
         ThreadContext.put("logFileName", logFileName);
-        //        final Logger logger = LogManager.getLogger();
         logger.info("Starting scenario: {}", scenarioName);
-
     }
 
     @Before(order = 1)
@@ -95,7 +91,6 @@ public class Hooks
     @After(order = 0)
     public void closeBrowser()
     {
-        //        Logger logger = LogManager.getLogger();
         driver.quit();
         logger.info("Quit the browser");
     }
