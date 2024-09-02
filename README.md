@@ -1,5 +1,9 @@
 # vikunja-test
+---
+## Table of contents
 
+- [Pre-Requisites](#pre-requisites)
+- [Project Structure](#project-structure)
 **Overview**
 
 This project is a test automation framework designed for web application testing using Cucumber, Selenium WebDriver, and Log4j2 for logging. The framework supports running tests with different browsers and provides detailed reports using ExtentReports.
