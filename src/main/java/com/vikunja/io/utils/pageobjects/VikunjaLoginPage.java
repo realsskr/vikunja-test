@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class VikunjaLoginPage
 {
 
-    @FindBy(xpath = "//a[contains(text(),'Create account')]")
+    @FindBy(xpath = "//a[@href='/register']")
     private WebElement createAccountLink;
 
     private final WebDriver driver;

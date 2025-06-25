@@ -37,7 +37,6 @@ public class Hooks
     @Before(order = 0)
     public void setLogger(Scenario scenario)
     {
-
         String timestamp = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date());
         String scenarioName = scenario.getName().replaceAll("[^a-zA-Z0-9]", "_");
         String logFileName = String.format("logfile-%s_%s", scenarioName, timestamp);

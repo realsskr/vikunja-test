@@ -56,7 +56,7 @@ public class RegistrationSteps
     @Then("user should be presented with {string} error message")
     public void userShouldBePresentedWithErrorMessage(String errorMessage)
     {
-        logger.info("Error message displayed for the user " + registrationPage.verifyErrorMessage());
+        logger.info("Error message displayed for the user {}", registrationPage.verifyErrorMessage());
         Assert.assertEquals(errorMessage, registrationPage.verifyErrorMessage());
     }
 }
